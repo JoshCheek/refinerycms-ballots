@@ -4,6 +4,6 @@ class Office < ActiveRecord::Base
   has_many :candidates
   belongs_to :campaign
   
-  validates :title, :presence => true, :uniqueness => false
+  validates :title, :presence => true
   
 end
