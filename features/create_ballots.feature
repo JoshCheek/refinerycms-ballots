@@ -26,5 +26,5 @@ Feature: Create ballot
     |Jackson Andrews|
 
   Scenario: Create all three in one swoop
-    I can create a ballot that accepts nested attributes for offices and candidates
+    Given I can create a ballot that accepts nested attributes for offices and candidates
       
