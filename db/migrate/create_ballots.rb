@@ -4,11 +4,14 @@ class CreateBallots < ActiveRecord::Migration
     create_table :ballots do |t|
       t.string      :title
       t.integer     :position
+      t.datetime    :start_date
+      t.datetime    :end_date
       t.timestamps
     end
     
     create_table :offices do |t|
       t.string      :title
+      t.integer     :number_of_positions
       t.references  :ballot
       t.integer     :position
       t.timestamps

@@ -1,19 +1,19 @@
-@independent_elections
+@ballots
 Feature: Create ballot
 
   Background:
-  Given I am a logged in refinery user
-  And I have no ballots, offices, or candidates
+    Given I am a logged in refinery user
+    And I have no ballots, offices, or candidates
   
   Scenario: Create a Ballot
     Then I should be able to add a ballot
-    |start_date|end_date|
-    |2011-09-09|2011-09-12|
+    |start_date|end_date|title|
+    |2011-09-09|2011-09-12|president|
 
   Scenario: Create offices on a ballot
     Given a Ballot
     Then I should be able to add offices
-    |name|number_of_positions|
+    |title|number_of_positions|
     |Vice President|1|
     |Board Member|4|
   

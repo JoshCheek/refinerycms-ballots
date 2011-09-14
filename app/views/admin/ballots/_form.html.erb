@@ -10,6 +10,16 @@
     <%= f.label :title -%>
     <%= f.text_field :title, :class => 'larger widest'  -%>
   </div>
+  
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.datetime_select :start_date %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.datetime_select :end_date %>
+  </div>
 
   <% @ballot.offices.build %>
   <%= f.fields_for :offices do |builder| %>

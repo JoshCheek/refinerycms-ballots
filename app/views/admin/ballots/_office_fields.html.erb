@@ -2,7 +2,8 @@
   <p>
     <%= f.label :content, "Office" %>
     <%= link_to_remove_fields 'remove', f %><br />
-    <%= f.text_area :title, :rows => 1 %>
+    <%= f.text_field :title %><br />
+    <%= f.text_field :number_of_positions %>
   </p>
 
 <% f.object.candidates.build %>
