@@ -4,22 +4,22 @@ en:
       image_picker:
         image: image
   plugins:
-    campaigns:
-      title: Campaigns
+    ballots:
+      title: Ballots
   admin:
-    campaigns:
+    ballots:
       actions:
-        create_new: Add New Campaign
-        reorder: Reorder Campaigns
-        reorder_done: Done Reordering Campaigns
+        create_new: Add New Ballot
+        reorder: Reorder Ballots
+        reorder_done: Done Reordering Ballots
       records:
-        title: Campaigns
+        title: Ballots
         sorry_no_results: Sorry! There are no results found.
-        no_items_yet: There are no Campaigns yet. Click "Add New Campaign" to add your first campaign.
-      campaign:
-        view_live_html: View this campaign live <br/><em>(opens in a new window)</em>
-        edit: Edit this campaign
-        delete: Remove this campaign forever
-  campaigns:
+        no_items_yet: There are no Ballots yet. Click "Add New Ballot" to add your first ballot.
+      ballot:
+        view_live_html: View this ballot live <br/><em>(opens in a new window)</em>
+        edit: Edit this ballot
+        delete: Remove this ballot forever
+  ballots:
     show:
-      other: Other Campaigns
+      other: Other Ballots

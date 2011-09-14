@@ -1,8 +1,8 @@
 <% content_for :body_content_left do %>
-  <ul id="campaigns">
-    <% @campaigns.each do |campaign| %>
+  <ul id="ballots">
+    <% @ballots.each do |ballot| %>
       <li>
-        <%= link_to campaign.title, campaign_path(campaign) %>
+        <%= link_to ballot.title, ballot_path(ballot) %>
       </li>
     <% end %>
   </ul>

@@ -2,7 +2,7 @@ class Office < ActiveRecord::Base
 
   acts_as_indexed :fields => [:title]
   has_many :candidates, :dependent => :destroy
-  belongs_to :campaign
+  belongs_to :ballot
   
   validates :title, :presence => true
   

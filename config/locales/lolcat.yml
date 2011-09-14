@@ -4,22 +4,22 @@ lolcat:
       image_picker:
         image: IMAGE
   plugins:
-    campaigns:
-      title: Campaigns
+    ballots:
+      title: Ballots
   admin:
-    campaigns:
+    ballots:
       actions:
-        create_new: CREATE NEW Campaign
-        reorder: REORDR Campaigns
-        reorder_done: DUN REORDERIN Campaigns
+        create_new: CREATE NEW Ballot
+        reorder: REORDR Ballots
+        reorder_done: DUN REORDERIN Ballots
       records:
-        title: Campaigns
+        title: Ballots
         sorry_no_results: SRY! THAR R NO RESULTS FINDZ.
-        no_items_yet: THAR R NO Campaigns YET. CLICK "CREATE NEW Campaign" 2 ADD UR FURST campaign.
-      campaign:
-        view_live_html: VIEW DIS campaign LIV <BR/><EM>(OPENS IN NEW WINDOW)</EM>
-        edit: EDIT DIS campaign
-        delete: REMOOV DIS campaign FOREVR
-  campaigns:
+        no_items_yet: THAR R NO Ballots YET. CLICK "CREATE NEW Ballot" 2 ADD UR FURST ballot.
+      ballot:
+        view_live_html: VIEW DIS ballot LIV <BR/><EM>(OPENS IN NEW WINDOW)</EM>
+        edit: EDIT DIS ballot
+        delete: REMOOV DIS ballot FOREVR
+  ballots:
     show:
-      other: OTHR Campaigns
+      other: OTHR Ballots

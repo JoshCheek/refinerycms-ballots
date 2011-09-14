@@ -1,21 +1,21 @@
 nl:
   plugins:
-    campaigns:
-      title: Campaigns
+    ballots:
+      title: Ballots
   admin:
-    campaigns:
+    ballots:
       actions:
-        create_new: Maak een nieuwe Campaign
-        reorder: Wijzig de volgorde van de Campaigns
-        reorder_done: Klaar met het wijzingen van de volgorde van de Campaigns
+        create_new: Maak een nieuwe Ballot
+        reorder: Wijzig de volgorde van de Ballots
+        reorder_done: Klaar met het wijzingen van de volgorde van de Ballots
       records:
-        title: Campaigns
+        title: Ballots
         sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
-        no_items_yet: Er zijn nog geen Campaigns. Druk op 'Maak een nieuwe Campaign' om de eerste aan te maken.
-      campaign:
-        view_live_html: Bekijk deze campaign op de website <br/><em>(opent een nieuw venster)</em>
-        edit: Bewerk deze campaign
-        delete: Verwijder deze campaign voor eeuwig
-  campaigns:
+        no_items_yet: Er zijn nog geen Ballots. Druk op 'Maak een nieuwe Ballot' om de eerste aan te maken.
+      ballot:
+        view_live_html: Bekijk deze ballot op de website <br/><em>(opent een nieuw venster)</em>
+        edit: Bewerk deze ballot
+        delete: Verwijder deze ballot voor eeuwig
+  ballots:
     show:
-      other: Andere Campaigns
+      other: Andere Ballots

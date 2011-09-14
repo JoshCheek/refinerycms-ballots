@@ -1,4 +1,4 @@
-class Campaign < ActiveRecord::Base
+class Ballot < ActiveRecord::Base
 
   acts_as_indexed :fields => [:title]
   has_many :offices, :dependent => :destroy

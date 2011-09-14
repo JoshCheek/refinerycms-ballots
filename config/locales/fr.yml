@@ -4,22 +4,22 @@ fr:
       image_picker:
         image: image
   plugins:
-    campaigns:
-      title: Campaigns
+    ballots:
+      title: Ballots
   admin:
-    campaigns:
+    ballots:
       actions:
-        create_new: Créer un(e) nouve(au/l/lle) Campaign
-        reorder: Réordonner les Campaigns
-        reorder_done: Fin de réordonnancement des Campaigns
+        create_new: Créer un(e) nouve(au/l/lle) Ballot
+        reorder: Réordonner les Ballots
+        reorder_done: Fin de réordonnancement des Ballots
       records:
-        title: Campaigns
+        title: Ballots
         sorry_no_results: "Désolé ! Aucun résultat."
-        no_items_yet: 'Il n''y a actuellement aucun(e) Campaign. Cliquer sur "Créer un(e) nouve(au/l/lle) Campaign" pour créer votre premi(er/ère) campaign.'
-      campaign:
-        view_live_html: Voir ce(t/tte) campaign <br/><em>(Ouvre une nouvelle fenêtre)</em>
-        edit: Modifier ce(t/tte) campaign
-        delete: Supprimer définitivement ce(t/tte) campaign
-  campaigns:
+        no_items_yet: 'Il n''y a actuellement aucun(e) Ballot. Cliquer sur "Créer un(e) nouve(au/l/lle) Ballot" pour créer votre premi(er/ère) ballot.'
+      ballot:
+        view_live_html: Voir ce(t/tte) ballot <br/><em>(Ouvre une nouvelle fenêtre)</em>
+        edit: Modifier ce(t/tte) ballot
+        delete: Supprimer définitivement ce(t/tte) ballot
+  ballots:
     show:
-      other: Autres Campaigns
+      other: Autres Ballots

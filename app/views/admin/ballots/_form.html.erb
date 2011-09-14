@@ -1,8 +1,8 @@
-<script src="/javascripts/refinerycms-campaigns.js" type="text/javascript"></script> 
+<script src="/javascripts/refinerycms-ballots.js" type="text/javascript"></script> 
 
-<%= form_for [:admin, @campaign] do |f| -%>
+<%= form_for [:admin, @ballot] do |f| -%>
   <%= render :partial => "/shared/admin/error_messages", :locals => {
-          :object => @campaign,
+          :object => @ballot,
           :include_object_name => true
         } %>
   
@@ -11,7 +11,7 @@
     <%= f.text_field :title, :class => 'larger widest'  -%>
   </div>
 
-  <% @campaign.offices.build %>
+  <% @ballot.offices.build %>
   <%= f.fields_for :offices do |builder| %>
     <%= render 'office_fields', :f => builder %>
   <% end %>
@@ -22,8 +22,8 @@
               :locals => {
                 :f => f,
                 :continue_editing => false,
-                :delete_title => t('delete', :scope => 'admin.campaigns.campaign'),
-                :delete_confirmation => t('message', :scope => 'shared.admin.delete', :title => @campaign.title)
+                :delete_title => t('delete', :scope => 'admin.ballots.ballot'),
+                :delete_confirmation => t('message', :scope => 'shared.admin.delete', :title => @ballot.title)
               } %>
 <% end -%>
 

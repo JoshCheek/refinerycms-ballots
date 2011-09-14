@@ -1,21 +1,21 @@
 nb:
   plugins:
-    campaigns:
-      title: Campaigns
+    ballots:
+      title: Ballots
   admin:
-    campaigns:
+    ballots:
       actions:
-        create_new: Lag en ny Campaign
-        reorder: Endre rekkefølgen på Campaigns
-        reorder_done: Ferdig å endre rekkefølgen Campaigns
+        create_new: Lag en ny Ballot
+        reorder: Endre rekkefølgen på Ballots
+        reorder_done: Ferdig å endre rekkefølgen Ballots
       records:
-        title: Campaigns
+        title: Ballots
         sorry_no_results: Beklager! Vi fant ikke noen resultater.
-        no_items_yet: Det er ingen Campaigns enda. Klikk på "Lag en ny Campaign" for å legge til din første campaign.
-      campaign:
-        view_live_html: Vis hvordan denne campaign ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
-        edit: Rediger denne campaign
-        delete: Fjern denne campaign permanent
-  campaigns:
+        no_items_yet: Det er ingen Ballots enda. Klikk på "Lag en ny Ballot" for å legge til din første ballot.
+      ballot:
+        view_live_html: Vis hvordan denne ballot ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+        edit: Rediger denne ballot
+        delete: Fjern denne ballot permanent
+  ballots:
     show:
-      other: Andre Campaigns
+      other: Andre Ballots

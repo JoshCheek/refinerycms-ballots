@@ -1,7 +1,7 @@
-class CreateCampaigns < ActiveRecord::Migration
+class CreateBallots < ActiveRecord::Migration
 
   def self.up
-    create_table :campaigns do |t|
+    create_table :ballots do |t|
       t.string      :title
       t.integer     :position
       t.timestamps
@@ -9,7 +9,7 @@ class CreateCampaigns < ActiveRecord::Migration
     
     create_table :offices do |t|
       t.string      :title
-      t.references  :campaign
+      t.references  :ballot
       t.integer     :position
       t.timestamps
     end
@@ -22,15 +22,15 @@ class CreateCampaigns < ActiveRecord::Migration
     end
 
 
-    add_index :campaigns  , :id
+    add_index :ballots  , :id
     add_index :offices    , :id
     add_index :candidates , :id
 
-    load(Rails.root.join('db', 'seeds', 'campaigns.rb'))
+    load(Rails.root.join('db', 'seeds', 'ballots.rb'))
   end
 
   def self.down
-    [:campaigns, :offices, :candidates].each do |table_name|
+    [:ballots, :offices, :candidates].each do |table_name|
       if defined?(UserPlugin)
         UserPlugin.destroy_all :name => table_name.to_s
       end

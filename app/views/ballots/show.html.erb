@@ -1,12 +1,12 @@
 <% content_for :body_content_title do %>
-  <%= @campaign.title %>
+  <%= @ballot.title %>
 <% end %>
 
 <% content_for :body_content_left do %>
   <section>
     <h1>Title</h1>
     <p>
-      <%=raw @campaign.title %>
+      <%=raw @ballot.title %>
     </p>
   </section>
 <% end %>
@@ -14,10 +14,10 @@
 <% content_for :body_content_right do %>
   <aside>
     <h2><%= t('.other') %></h2>
-    <ul id="campaigns">
-      <% @campaigns.each do |campaign| %>
+    <ul id="ballots">
+      <% @ballots.each do |ballot| %>
         <li>
-          <%= link_to campaign.title, campaign_path(campaign) %>
+          <%= link_to ballot.title, ballot_path(ballot) %>
         </li>
       <% end %>
     </ul>

@@ -1,7 +1,7 @@
 require 'refinerycms-base'
 
 module Refinery
-  module Campaigns
+  module Ballots
 
     class << self
       attr_accessor :root
@@ -17,10 +17,10 @@ module Refinery
 
       config.after_initialize do
         Refinery::Plugin.register do |plugin|
-          plugin.name = "campaigns"
+          plugin.name = "ballots"
           plugin.pathname = root
           plugin.activity = {
-            :class => Campaign
+            :class => Ballot
           }
         end
       end

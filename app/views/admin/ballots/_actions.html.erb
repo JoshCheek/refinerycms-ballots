@@ -1,25 +1,25 @@
 <ul>
-  <% if Admin::CampaignsController.searchable? %>
+  <% if Admin::BallotsController.searchable? %>
     <li>
       <%= render :partial => "/shared/admin/search",
                   :locals => {
-                    :url => admin_campaigns_path
+                    :url => admin_ballots_path
                   } %>
     </li>
   <% end %>
   <li>
-    <%= link_to t('.create_new'), new_admin_campaign_path,
+    <%= link_to t('.create_new'), new_admin_ballot_path,
                  :class => "add_icon" %>
   </li>
-<% if !searching? and Admin::CampaignsController.sortable? and Campaign.count > 1 %>
+<% if !searching? and Admin::BallotsController.sortable? and Ballot.count > 1 %>
   <li>
-    <%= link_to t('.reorder', :what => "Campaigns"),
-                 admin_campaigns_path,
+    <%= link_to t('.reorder', :what => "Ballots"),
+                 admin_ballots_path,
                  :id => "reorder_action",
                  :class => "reorder_icon" %>
 
-    <%= link_to t('.reorder_done', :what => "Campaigns"),
-                 admin_campaigns_path,
+    <%= link_to t('.reorder_done', :what => "Ballots"),
+                 admin_ballots_path,
                  :id => "reorder_action_done",
                  :style => "display: none;",
                  :class => "reorder_icon" %>

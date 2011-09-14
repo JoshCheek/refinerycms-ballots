@@ -7,4 +7,4 @@
 <%= render :partial => '/shared/admin/make_sortable',
             :locals => {
               :tree => false
-            } if !searching? and Admin::CampaignsController.sortable? and Campaign.count > 1 %>
+            } if !searching? and Admin::BallotsController.sortable? and Ballot.count > 1 %>

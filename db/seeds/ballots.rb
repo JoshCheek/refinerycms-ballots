@@ -1,7 +1,7 @@
 if defined?(User)
   User.all.each do |user|
-    if user.plugins.where(:name => 'campaigns').blank?
-      user.plugins.create(:name => 'campaigns',
+    if user.plugins.where(:name => 'ballots').blank?
+      user.plugins.create(:name => 'ballots',
                           :position => (user.plugins.maximum(:position) || -1) +1)
     end
   end
@@ -9,11 +9,11 @@ end
 
 if defined?(Page)
   page = Page.create(
-    :title => 'Campaigns',
-    :link_url => '/campaigns',
+    :title => 'Ballots',
+    :link_url => '/ballots',
     :deletable => false,
     :position => ((Page.maximum(:position, :conditions => {:parent_id => nil}) || -1)+1),
-    :menu_match => '^/campaigns(\/|\/.+?|)$'
+    :menu_match => '^/ballots(\/|\/.+?|)$'
   )
   Page.default_parts.each do |default_page_part|
     page.parts.create(:title => default_page_part, :body => nil)
