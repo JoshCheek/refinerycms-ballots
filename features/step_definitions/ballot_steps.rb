@@ -1,30 +1,47 @@
 def nested_creation_hash
-  {"title"=>"2009 Election",
-   "start_date(1i)"=>"2008",
-   "start_date(2i)"=>"9",
+  {"title"=>"2012 election",
+   "start_date(1i)"=>"2012",
+   "start_date(2i)"=>"1",
    "start_date(3i)"=>"14",
-   "start_date(4i)"=>"14",
-   "start_date(5i)"=>"44",
-   "end_date(1i)"=>"2008",
-   "end_date(2i)"=>"10",
+   "start_date(4i)"=>"15",
+   "start_date(5i)"=>"09",
+   "end_date(1i)"=>"2012",
+   "end_date(2i)"=>"2",
    "end_date(3i)"=>"14",
-   "end_date(4i)"=>"14",
-   "end_date(5i)"=>"44",
+   "end_date(4i)"=>"15",
+   "end_date(5i)"=>"09",
    "offices_attributes"=>
     {"0"=>
       {"_destroy"=>"false",
        "title"=>"President",
        "number_of_positions"=>"1",
        "candidates_attributes"=>
-        {"0"=>{"name"=>"Barack Obama", "_destroy"=>"false"},
-         "1316011494172"=>{"name"=>"John McCain", "_destroy"=>"false"}}},
-     "1316011498910"=>
+        {"0"=>{"name"=>"Bradford", "_destroy"=>"false"},
+         "1316013000645"=>{"name"=>"Gary", "_destroy"=>"false"}}},
+     "1316013014442"=>
       {"_destroy"=>"false",
        "title"=>"Vice President",
        "number_of_positions"=>"1",
        "candidates_attributes"=>
-        {"0"=>{"name"=>"Joe Biden", "_destroy"=>"false"},
-         "1316011508156"=>{"name"=>"Sarah Palin", "_destroy"=>"false"}}}}}
+        {"0"=>{"name"=>"Jim", "_destroy"=>"false"},
+         "1316013025758"=>{"name"=>"Cara", "_destroy"=>"false"}}},
+     "1316013254746"=>
+      {"_destroy"=>"false",
+       "title"=>"Board of Directors",
+       "number_of_positions"=>"4",
+       "candidates_attributes"=>
+        {"0"=>{"name"=>"Joe", "_destroy"=>"false"},
+         "1316013264883"=>{"name"=>"Bob", "_destroy"=>"false"},
+         "1316013267758"=>{"name"=>"Pete", "_destroy"=>"false"},
+         "1316013271569"=>{"name"=>"Uma", "_destroy"=>"false"}}}}}
+end
+
+def candidates_for(office)
+  nested_creation_hash['offices_attributes'].find { |id, attrs| attrs['title'] == office }.last['candidates_attributes']
+end
+
+def num_candidates_for(office)
+  candidates_for(office.title).size
 end
 
 
@@ -92,10 +109,11 @@ end
 Given /^I can create a ballot that accepts nested attributes for offices and candidates$/ do
   Given "I have no ballots, offices, or candidates"
   Ballot.create(nested_creation_hash)
+  offices = nested_creation_hash['offices_attributes']
   ballot = Ballot.first
   ballot.title.should == nested_creation_hash['title']
-  ballot.should have(2).offices
-  ballot.offices.each { |office| office.should have(2).candidates }
+  ballot.should have(offices.size).offices
+  ballot.offices.each { |office| office.should have(num_candidates_for office).candidates }
 end
 
 Given /^a ballot with multiple offices and candidates$/ do
