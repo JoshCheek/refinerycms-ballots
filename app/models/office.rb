@@ -7,7 +7,7 @@ class Office < ActiveRecord::Base
   validates :title, :presence => true
   
   accepts_nested_attributes_for :candidates,
-      :reject_if => lambda { |attrs| attrs[:title].blank? },
+      :reject_if => lambda { |attrs| attrs[:name].blank? },
       :allow_destroy => true
   
 end
