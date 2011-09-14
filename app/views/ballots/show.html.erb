@@ -18,17 +18,5 @@
   </section>
 <% end %>
 
-<% content_for :body_content_right do %>
-  <aside>
-    <h2><%= t('.other') %></h2>
-    <ul id="ballots">
-      <% @ballots.each do |ballot| %>
-        <li>
-          <%= link_to ballot.title, ballot_path(ballot) %>
-        </li>
-      <% end %>
-    </ul>
-  </aside>
-<% end %>
 
 <%= render :partial => "/shared/content_page" %>
