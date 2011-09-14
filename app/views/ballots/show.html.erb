@@ -4,10 +4,17 @@
 
 <% content_for :body_content_left do %>
   <section>
-    <h1>Title</h1>
-    <p>
-      <%=raw @ballot.title %>
-    </p>
+    <p><%= @ballot.pretty_start_date %> through <%= @ballot.pretty_end_date %></p>
+    
+    <% @ballot.offices.each do |office| %>
+      <h4><%= office.title %></h4>
+      <p><%= position_message_for office.number_of_positions %></p>
+      <ol class="candidates">
+        <% office.candidates.each do |candidate| %>
+          <li><%= candidate.name %></li>
+        <% end %>
+      </ol>
+    <% end %>
   </section>
 <% end %>
 
