@@ -19,8 +19,12 @@ end
 
 
 Then /^I should be able to add a ballot$/ do |table|
-  ballot = Ballot.new table.hashes.first
+  init_hash = table.hashes.first
+  ballot = Ballot.new init_hash
   lambda { ballot.save! }.should_not raise_error
+  ballot.pretty_start_date.should == init_hash[:start_date]
+  ballot.pretty_end_date.should == init_hash[:end_date]
+  ballot.title.should == init_hash[:title]
 end
 
 Given /^a Ballot$/ do
