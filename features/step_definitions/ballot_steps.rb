@@ -1,3 +1,4 @@
+
 Given /^I have no ballots, offices, or candidates$/ do
   Ballot.delete_all
   Office.delete_all
@@ -28,14 +29,15 @@ Given /^a Ballot$/ do
 end
 
 Then /^I should be able to add offices$/ do |table|
+  @ballot.save
   table.hashes.each do |init_hash|
     lambda { @ballot.offices.create init_hash }.should_not raise_error
   end
   offices = Office.all
   offices.size.should == 2
   table.hashes.each_with_index do |init_hash, index|
-    office[index].name.should == init_hash[:name]
-    office[index].number_of_positions.should == init_hash[:number_of_positions]
+    offices[index].title.should == init_hash[:title]
+    offices[index].number_of_positions.should == init_hash[:number_of_positions].to_i
   end
 end
 
@@ -48,8 +50,8 @@ Given /^a ballot with an office$/ do
 end
 
 Then /^I should be able to add candidates$/ do |candidates|
-  candidates.each { |candidate| @office.candidates.build :name => candidate }
+  candidates.hashes.each { |candidate| @office.candidates.build candidate }
   @office.save!
   Candidate.count.should == 3
-  Candidates.all.map(&:name).sort.should == candidates.sort
+  Candidate.all.map(&:name).sort.should == candidates.hashes.map { |hash| hash[:name] }.sort
 end
