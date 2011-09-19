@@ -44,46 +44,44 @@ describe 'Voting' do
     Member.count.should == 0
   end
   
+  let(:member)    { Member.create! :unique_identifier => 'A123'; Member.last }
+  let(:bv)        { BallotVote.new_for_ballot Ballot.first }
+  let(:president) { bv.office_votes.to_a.find { |ov| ov.office.title == 'President' } }
+  let(:bradford)  { president.candidate_votes.to_a.find { |cv| cv.candidate.name == 'Bradford' } }
+  let(:gary)      { president.candidate_votes.to_a.find { |cv| cv.candidate.name == 'Gary' } }
+  
   before :each do
     [BallotVote, OfficeVote, CandidateVote].each(&:delete_all)
+    bv.member = member
   end
   
-  let(:member) { Member.create! :unique_identifier => 'A123'; Member.last }
-  
   specify 'members can cast votes for candidates' do
-    bv = BallotVote.new :member => member
-    president = bv.office_votes.build :office => Office.find_by_title('President')
-    president.candidate_votes.build :candidate => Candidate.find_by_name('Bradford')
+    bradford.vote
     bv.save!
     member.ballot_votes.count.should == 1
     BallotVote.count.should == 1
-    OfficeVote.count.should == 1
-    CandidateVote.count.should == 1
+    OfficeVote.count.should == 3
+    CandidateVote.count.should == 8
     Candidate.find_by_name('Bradford').number_of_votes.should == 1
   end
   
   specify 'cannot overvote' do
-    bv = BallotVote.new :member => member
-    president = bv.office_votes.build :office => Office.find_by_title('President')
-    president.candidate_votes.build :candidate => Candidate.find_by_name('Bradford')
+    bradford.vote
     president.should be_valid
-    president.candidate_votes.build :candidate => Candidate.find_by_name('Gary')
+    gary.vote
     president.should_not be_valid
     bv.save.should be_false
     BallotVote.count.should == 0
     OfficeVote.count.should == 0
     CandidateVote.count.should == 0
     Candidate.find_by_name('Bradford').number_of_votes.should == 0
+    Candidate.find_by_name('Gary').number_of_votes.should == 0
   end
   
   specify 'can undervote' do
-    bv = BallotVote.new :member => member
-    president = bv.office_votes.build :office => Office.find_by_title('President')
     president.should be_valid
     bv.save.should be
-    BallotVote.count.should == 1
-    OfficeVote.count.should == 1
-    CandidateVote.count.should == 0
+    Candidate.find_by_name('Bradford').number_of_votes.should == 0
+    Candidate.find_by_name('Gary').number_of_votes.should == 0
   end
-  
 end

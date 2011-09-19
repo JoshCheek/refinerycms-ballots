@@ -14,6 +14,7 @@ class CreateVoteTables < ActiveRecord::Migration
     create_table :candidate_votes do |t|
       t.references :office_vote
       t.references :candidate
+      t.boolean    :voted, :default => false
     end
   end
   

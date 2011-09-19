@@ -8,14 +8,21 @@ class VotesController < ApplicationController
   end
 
   def new
-    @vote = voting_for @ballot
+    @ballot_vote = ballot_vote_for @ballot
     present(@page)
   end
   
 protected
 
-  def voting_for(ballot)
-    raise 'Implement me!'
+  def ballot_vote_for(ballot)
+    bv = BallotVote.new :ballot => ballot
+    ballot.offices.each do |office|
+      ov = bv.office_votes.build :office => office
+      office.candidates.each do |candidate|
+        ov.candidate_votes.build :candidate => candidate
+      end
+    end
+    bv
   end
 
   def find_ballot

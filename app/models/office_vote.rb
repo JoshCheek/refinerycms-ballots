@@ -8,6 +8,10 @@ class OfficeVote < ActiveRecord::Base
       # :reject_if => lambda { |attrs| attrs[:title].blank? },
       :allow_destroy => true
   
+  def title
+    office && office.title
+  end
+  
   def cannot_overvote
     if num_votes > max_num_votes
       errors[:base] << "Cannot vote for #{num_votes}, maximum is #{max_num_votes}"
@@ -15,11 +19,11 @@ class OfficeVote < ActiveRecord::Base
   end
   
   def num_votes
-    # count apparently queries db, size is for in-memory associations
-    candidate_votes.size
+    candidate_votes.select { |cv| cv.voted? }.size
   end
   
   def max_num_votes
     office.number_of_positions
   end
 end
+

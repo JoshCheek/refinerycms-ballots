@@ -7,7 +7,7 @@ class Candidate < ActiveRecord::Base
   validates :name, :presence => true
 
   def number_of_votes
-    candidate_votes.count
+    candidate_votes.where(:voted => true).count
   end  
 end
 
