@@ -6,7 +6,12 @@
   <section>
     <p><%= @ballot.pretty_start_date %> through <%= @ballot.pretty_end_date %></p>
 
-    <%= form_for @ballot_vote do |f| -%>
+    <%= render :partial => "/shared/admin/error_messages", :locals => {
+            :object => @ballot_vote,
+            :include_object_name => true
+          } %>
+
+    <%= form_for @ballot_vote, :html => { :class => 'ballot_vote' } do |f| -%>
       <%= f.fields_for :office_votes do |fov| %>
         
         <%= fov.text_field :office_id, :hidden => true %>
@@ -18,8 +23,7 @@
           <%= fov.fields_for :candidate_votes do |fcv| %>
             <li class="field">
               <%= fcv.text_field :candidate_id, :hidden => true %>
-              <%= fcv.object.name %>
-              <%= fcv.label :voted %><br />
+              <%= fcv.label :voted, fcv.object.name %><br />
               <%= fcv.check_box :voted, :checked => fcv.object.voted %>
             </li>
           <% end %>

@@ -1,0 +1,14 @@
+<% content_for :body_content_title do %>
+  Success
+<% end %>
+
+<% content_for :body_content_left do %>
+  <section>
+    <p>
+      Your vote has been recorded. <%= link_to 'Back to ballot', @ballot %>.
+    </p>
+  </section>
+<% end %>
+
+
+<%= render :partial => "/shared/content_page" %>

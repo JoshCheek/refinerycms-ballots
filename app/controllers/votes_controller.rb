@@ -7,7 +7,7 @@ class VotesController < ApplicationController
     @ballot_vote = BallotVote.new params[:ballot_vote]
     @ballot_vote.ballot = @ballot
     if @ballot_vote.save
-      present @page
+      redirect_to @ballot
     else
       render :new
     end
