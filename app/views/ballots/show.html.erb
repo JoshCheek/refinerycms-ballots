@@ -1,9 +1,10 @@
+<% content_for :stylesheets, stylesheet_link_tag("ballots.css") -%>
 <% content_for :body_content_title do %>
   <%= @ballot.title %>
 <% end %>
 
 <% content_for :body_content_left do %>
-  <section>
+  <section class="ballot">
     <p><%= @ballot.pretty_start_date %> through <%= @ballot.pretty_end_date %></p>
     
     <% @ballot.offices.each do |office| %>

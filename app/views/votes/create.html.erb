@@ -1,9 +1,10 @@
+<% content_for :stylesheets, stylesheet_link_tag("ballots.css") -%>
 <% content_for :body_content_title do %>
   Success
 <% end %>
 
 <% content_for :body_content_left do %>
-  <section>
+  <section class="ballot">
     <p>
       Your vote has been recorded. <%= link_to 'Back to ballot', @ballot %>.
     </p>

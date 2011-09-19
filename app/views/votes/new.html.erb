@@ -1,9 +1,10 @@
+<% content_for :stylesheets, stylesheet_link_tag("ballots.css") -%>
 <% content_for :body_content_title do %>
   <%= @ballot.title %>
 <% end %>
 
 <% content_for :body_content_left do %>
-  <section>
+  <section class="ballot">
     <p><%= @ballot.pretty_start_date %> through <%= @ballot.pretty_end_date %></p>
 
     <%= render :partial => "/shared/admin/error_messages", :locals => {
@@ -11,7 +12,7 @@
             :include_object_name => true
           } %>
 
-    <%= form_for @ballot_vote, :html => { :class => 'ballot_vote' } do |f| -%>
+    <%= form_for @ballot_vote do |f| -%>
       <%= f.fields_for :office_votes do |fov| %>
         
         <%= fov.text_field :office_id, :hidden => true %>
