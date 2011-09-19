@@ -1,0 +1,30 @@
+<% content_for :body_content_title do %>
+  <%= @ballot.title %>
+<% end %>
+
+<% content_for :body_content_left do %>
+  <section>
+    <p><%= @ballot.pretty_start_date %> through <%= @ballot.pretty_end_date %></p>
+
+
+    <%= form_for @ballot_vote do |f| -%>
+      <%= render :partial => "/shared/error_messages", :locals => { :object => @ballot, :include_object_name => true } %>
+
+      
+      <%= f.fields_for :office_votes do |fov| %>
+        <h4><%= fov.title %></h4>
+        <p><%= position_message_for fov.office_vote.max_num_votes %></p>
+        <ol class="candidates">
+          <%= fov.fields_for :candidate_votes do |fcv| %>
+            <li></li>
+          <% end %>
+        </ol>
+      <% end %>
+      
+      <%= submit_tag 'Vote' %>
+    <% end %>
+  </section>
+<% end %>
+
+
+<%= render :partial => "/shared/content_page" %>

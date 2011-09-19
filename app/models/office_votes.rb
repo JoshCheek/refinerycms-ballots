@@ -4,6 +4,10 @@ class OfficeVote < ActiveRecord::Base
   has_many :candidate_votes
   validate :cannot_overvote
   
+  accepts_nested_attributes_for :candidate_votes,
+      # :reject_if => lambda { |attrs| attrs[:title].blank? },
+      :allow_destroy => true
+  
   def cannot_overvote
     if num_votes > max_num_votes
       errors[:base] << "Cannot vote for #{num_votes}, maximum is #{max_num_votes}"
