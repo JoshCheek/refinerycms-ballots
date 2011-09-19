@@ -8,12 +8,19 @@
 
     <%= form_for @ballot_vote do |f| -%>
       <%= f.fields_for :office_votes do |fov| %>
+        
+        <%= fov.text_field :office_id, :hidden => true %>
+
+        
         <h4><%= fov.object.title %></h4>
         <p><%= position_message_for fov.object.max_num_votes %></p>
         <ol class="candidates">
           <%= fov.fields_for :candidate_votes do |fcv| %>
-            <li>
+            <li class="field">
+              <%= fcv.text_field :candidate_id, :hidden => true %>
               <%= fcv.object.name %>
+              <%= fcv.label :voted %><br />
+              <%= fcv.check_box :voted, :checked => fcv.object.voted %>
             </li>
           <% end %>
         </ol>
