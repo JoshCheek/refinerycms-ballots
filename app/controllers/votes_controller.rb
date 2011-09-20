@@ -6,10 +6,10 @@ class VotesController < ApplicationController
   def create
     @ballot_vote = BallotVote.new params[:ballot_vote]
     @ballot_vote.ballot = @ballot
-    if @ballot_vote.save
-      redirect_to @ballot
-    else
+    if @ballot_vote.tampered? || !@ballot_vote.save
       render :new
+    else
+      redirect_to @ballot
     end
   end
 

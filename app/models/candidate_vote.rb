@@ -10,4 +10,8 @@ class CandidateVote < ActiveRecord::Base
     self.voted = true
   end
   
+  def tampered?(office)
+    !candidate || candidate.office != office
+  end
+  
 end

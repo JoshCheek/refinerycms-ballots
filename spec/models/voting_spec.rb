@@ -96,4 +96,35 @@ describe 'Voting' do
     end
   end
   
+  
+  describe 'tamper detection' do
+    specify "the office_vote must be pointing to an office that belongs to the ballot_vote's ballot" do
+      ballot1 = Ballot.create!          :title => 'election1', :start_date => 10.days.ago, :end_date => 10.days.ago
+      office1 = ballot1.offices.create! :title => 'office1', :number_of_positions => 10
+      ballot2 = Ballot.create!          :title => 'election2', :start_date => 10.days.ago, :end_date => 10.days.ago
+      office2 = ballot2.offices.create! :title => 'office2', :number_of_positions => 10
+      ballot1.save!
+      ballot2.save!
+      bv = BallotVote.new_for_ballot ballot1
+      bv.should_not be_tampered
+      bv.office_votes.first.office = office2
+      bv.should be_tampered
+    end
+    
+    specify "The candidate_vote must be pointing to a candidate that belongs to the office_vote's office" do
+      ballot1     = Ballot.create!            :title => 'election1', :start_date => 10.days.ago, :end_date => 10.days.ago
+      office1     = ballot1.offices.create!   :title => 'office1', :number_of_positions => 10
+      candidate1  = office1.candidates.build  :name => 'candidate1'
+      ballot2     = Ballot.create!            :title => 'election2', :start_date => 10.days.ago, :end_date => 10.days.ago
+      office2     = ballot2.offices.create!   :title => 'office2', :number_of_positions => 10
+      candidate2  = office2.candidates.build  :name => 'candidate2'
+      ballot1.save!
+      ballot2.save!
+      bv = BallotVote.new_for_ballot ballot1
+      bv.should_not be_tampered
+      bv.office_votes.first.candidate_votes.first.candidate = candidate2
+      bv.should be_tampered
+    end
+  end
+  
 end

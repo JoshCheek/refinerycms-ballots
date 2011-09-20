@@ -17,6 +17,10 @@ class BallotVote < ActiveRecord::Base
     bv
   end  
   
+  def tampered?
+    !ballot || office_votes.any? { |office_vote| office_vote.tampered? ballot }
+  end
+  
   private
   
     def ballot_must_be_open_for_voting
