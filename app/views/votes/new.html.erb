@@ -24,8 +24,8 @@
           <%= fov.fields_for :candidate_votes do |fcv| %>
             <li class="field">
               <%= fcv.text_field :candidate_id, :hidden => true %>
-              <%= fcv.label :voted, fcv.object.name %><br />
               <%= fcv.check_box :voted, :checked => fcv.object.voted %>
+              <%= fcv.label :voted, fcv.object.name %><br />
             </li>
           <% end %>
         </ol>
