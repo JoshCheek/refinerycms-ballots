@@ -20,4 +20,9 @@ class Ballot < ActiveRecord::Base
   def pretty_date(date)
     date.strftime "%Y-%m-%d"
   end
+  
+  def open_for_voting?
+    today = Time.now
+    start_date < today && today < end_date
+  end
 end

@@ -4,16 +4,8 @@ describe 'Voting' do
   before :each do
     [Ballot, Office, Candidate, Member].each(&:delete_all)
     Ballot.create  "title"=>"2012 election",
-                   "start_date(1i)"=>"2012",
-                   "start_date(2i)"=>"1",
-                   "start_date(3i)"=>"14",
-                   "start_date(4i)"=>"15",
-                   "start_date(5i)"=>"09",
-                   "end_date(1i)"=>"2012",
-                   "end_date(2i)"=>"2",
-                   "end_date(3i)"=>"14",
-                   "end_date(4i)"=>"15",
-                   "end_date(5i)"=>"09",
+                   "start_date"=>10.days.ago,
+                   "end_date"=>10.days.from_now,
                    "offices_attributes"=>
                     {"0"=>
                       {"_destroy"=>"false",
@@ -84,4 +76,24 @@ describe 'Voting' do
     Candidate.find_by_name('Bradford').number_of_votes.should == 0
     Candidate.find_by_name('Gary').number_of_votes.should == 0
   end
+  
+  describe 'voting times' do
+    let(:ballot) { Ballot.new :start_date => 10.days.ago, :end_date => 10.days.from_now }
+    let(:ballot_vote) { BallotVote.new_for_ballot ballot }
+    
+    specify 'cannot vote before the window' do
+      ballot.start_date = 1.day.from_now
+      ballot_vote.should_not be_valid
+    end
+    
+    specify 'can vote in the window' do
+      ballot_vote.should be_valid
+    end
+    
+    specify 'cannot vote after the window' do
+      ballot.end_date = 1.day.ago
+      ballot_vote.should_not be_valid
+    end
+  end
+  
 end
