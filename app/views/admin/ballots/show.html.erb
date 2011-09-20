@@ -12,7 +12,7 @@
       <p><%= position_message_for office.number_of_positions %></p>
       <ol class="candidates">
         <% office.candidates.each do |candidate| %>
-          <li><%= candidate.name %></li>
+          <li><%= candidate.name %>(<%= candidate.percentage %>%)</li>
         <% end %>
       </ol>
     <% end %>

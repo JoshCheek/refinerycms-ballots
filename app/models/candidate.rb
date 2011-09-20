@@ -6,8 +6,17 @@ class Candidate < ActiveRecord::Base
     
   validates :name, :presence => true
 
+  def percentage
+    return 0 if number_of_votes.zero?
+    100 * number_of_votes / number_of_voters
+  end
+
   def number_of_votes
     candidate_votes.where(:voted => true).count
-  end  
-end
+  end
+  
+  def number_of_voters
+    candidate_votes.count
+  end
 
+end

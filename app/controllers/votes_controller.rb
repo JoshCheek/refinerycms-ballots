@@ -9,7 +9,7 @@ class VotesController < ApplicationController
     if @ballot_vote.tampered? || !@ballot_vote.save
       render :new
     else
-      redirect_to @ballot
+      redirect_to root_url
     end
   end
 

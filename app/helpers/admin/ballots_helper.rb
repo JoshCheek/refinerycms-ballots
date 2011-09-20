@@ -11,5 +11,9 @@ module Admin
       end  
       raw link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
     end
+    
+    def position_message_for(n)
+      "Vote for #{n}"
+    end
   end
 end

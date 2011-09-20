@@ -2,6 +2,7 @@ class BallotVote < ActiveRecord::Base
   belongs_to :member
   belongs_to :ballot
   has_many :office_votes
+  has_many :candidate_votes, :through => :office_votes
   validates_associated :office_votes
   validate :ballot_must_be_open_for_voting
   accepts_nested_attributes_for :office_votes, :allow_destroy => true

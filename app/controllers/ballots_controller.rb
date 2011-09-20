@@ -8,11 +8,7 @@
   end
 
   def show
-    @ballot = Ballot.find(params[:id])
-
-    # you can use meta fields from your model instead (e.g. browser_title)
-    # by swapping @page for @ballot in the line below:
-    present(@page)
+    redirect_to root_url
   end
 
 protected

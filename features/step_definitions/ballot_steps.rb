@@ -120,8 +120,8 @@ Given /^a ballot with multiple offices and candidates$/ do
   Ballot.create nested_creation_hash
 end
 
-When /^I view the ballot$/ do
-  visit ballot_path Ballot.last
+When /^I view the admin ballot$/ do
+  visit admin_ballot_path Ballot.last
 end
 
 Then /^I should see all the offices and candidates$/ do

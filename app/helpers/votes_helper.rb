@@ -1,3 +1,3 @@
 module VotesHelper
-  include BallotsHelper
+  include Admin::BallotsHelper
 end

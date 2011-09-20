@@ -17,7 +17,7 @@ en:
         sorry_no_results: Sorry! There are no results found.
         no_items_yet: There are no Ballots yet. Click "Add New Ballot" to add your first ballot.
       ballot:
-        view_live_html: View this ballot live <br/><em>(opens in a new window)</em>
+        view_live_html: View results.
         edit: Edit this ballot
         delete: Remove this ballot forever
   ballots:
