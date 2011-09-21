@@ -5,6 +5,8 @@ class BallotVote < ActiveRecord::Base
   has_many :candidate_votes, :through => :office_votes
   validates_associated :office_votes
   validate :ballot_must_be_open_for_voting
+  validates_uniqueness_of :attribute, :on => :create, :message => "must be unique"
+  
   accepts_nested_attributes_for :office_votes, :allow_destroy => true
 
   def self.new_for_ballot(ballot)
@@ -31,7 +33,11 @@ class BallotVote < ActiveRecord::Base
     end
 end
 
-
-class Member < ActiveRecord::Base
+Member # force autoloading to load the file
+class Member
   has_many :ballot_votes
+  
+  def number_of_times_voted
+    ballot_votes.count
+  end
 end

@@ -1,7 +1,11 @@
 ::Refinery::Application.routes.draw do
   
   resources :ballots, :only => :index do
-    resources :votes, :only => [:new, :create]
+    resources :votes, :only => [:new, :create] do
+      collection do
+        get :login
+      end
+    end
   end
   
 

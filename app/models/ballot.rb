@@ -38,5 +38,4 @@ class Ballot < ActiveRecord::Base
   def number_of_voters
     ballot_votes.count
   end
-  
 end

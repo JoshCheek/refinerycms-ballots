@@ -13,6 +13,8 @@
           } %>
 
     <%= form_for @ballot_vote do |f| -%>
+    
+      <%= text_field_tag :unique_identifier, @member.unique_identifier, :hidden => true %>
       <%= f.fields_for :office_votes do |fov| %>
         
         <%= fov.text_field :office_id, :hidden => true %>

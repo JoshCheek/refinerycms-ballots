@@ -1,0 +1,5 @@
+<%= form_tag new_ballot_vote_path(@ballot), :method => 'get' do %>
+  <%= label_tag :unique_identifier, 'Enter your unique identifier' %>
+  <%= text_field_tag :unique_identifier %>
+  <%= submit_tag "Proceed to ballot" %>
+<% end %>
