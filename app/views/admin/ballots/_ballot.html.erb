@@ -3,6 +3,9 @@
     <%= ballot.title %>
     <span class="preview">&nbsp;</span>
   </span>
+  <span class='vote-link'>
+    (<%= link_to 'Link for voters', login_ballot_votes_url(ballot) %>)
+  </span>
   <span class='actions'>
     <%= link_to refinery_icon_tag("application_go.png"), admin_ballot_path(ballot),
         :title => t('.view_live_html'),
