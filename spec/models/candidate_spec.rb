@@ -1,6 +1,5 @@
 require 'spec_helper'
-require 'spec/factories/candidate'
-require 'spec/factories/candidate_vote'
+require 'spec/factories/all'
 
 describe Candidate do
   

@@ -1,5 +1,3 @@
-require 'spec/factories/ballot'
-
 def get_candidate_vote(options={})
   Factory.build :candidate_vote, options
 end

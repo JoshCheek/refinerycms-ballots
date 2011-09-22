@@ -1,5 +1,3 @@
-require 'spec/factories/ballot'
-
 Factory.define :member do |member|
   member.first_name           "Leonhard"
   member.last_name            "Euler"
