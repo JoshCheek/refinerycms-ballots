@@ -1,13 +1,4 @@
 describe Office do
-  def get_office(options={})
-    Factory.build :office, options
-  end
-  
-  def get_office!(options={})
-    office = get_office options
-    office.save!
-    office
-  end
   
   it 'must have a title' do
     get_office(:title => nil).should_not be_valid

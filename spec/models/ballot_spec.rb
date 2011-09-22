@@ -2,17 +2,7 @@ require 'spec_helper'
 require 'spec/factories/ballot'
 
 describe Ballot do
-  
-  def get_ballot(options={})
-    Factory.build :ballot, options
-  end
-  
-  def get_ballot!(options={})
-    ballot = get_ballot(options)
-    ballot.save!
-    ballot
-  end
-  
+    
   it 'has offices and destroys them when it is destroyed' do
     ballot = get_ballot!
     ballot.offices.create! Factory.attributes_for(:office)

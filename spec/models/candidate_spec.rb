@@ -3,20 +3,6 @@ require 'spec/factories/candidate'
 require 'spec/factories/candidate_vote'
 
 describe Candidate do
-  def get_candidate(options={})
-    Factory.build :candidate, options
-  end
-  
-  def get_candidate!(options={})
-    candidate = get_candidate options
-    candidate.save!
-    candidate
-  end
-  
-  def get_candidate_vote!(options={})
-    Factory.create :candidate_vote, options
-  end
-  
   
   it 'must have a name' do
     get_candidate(:name => nil).should_not be_valid
