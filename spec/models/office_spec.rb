@@ -11,6 +11,7 @@ describe Office do
   
   it 'must have a title' do
     get_office(:title => nil).should_not be_valid
+    get_office(:title => '').should_not be_valid
   end
   
   it 'has a number of positions that are available' do
@@ -31,5 +32,6 @@ describe Office do
     get_office(:number_of_positions => "abc1").should_not be_valid
     get_office(:number_of_positions => "abc").should_not be_valid
   end
+  
 end
 
