@@ -11,7 +11,7 @@ class CreateBallots < ActiveRecord::Migration
     
     create_table :offices do |t|
       t.string      :title
-      t.integer     :number_of_positions
+      t.integer     :number_of_positions, :default => 1
       t.references  :ballot
       t.integer     :position
       t.timestamps
@@ -25,7 +25,7 @@ class CreateBallots < ActiveRecord::Migration
     end
 
 
-    add_index :ballots  , :id
+    add_index :ballots    , :id
     add_index :offices    , :id
     add_index :candidates , :id
 
