@@ -5,7 +5,7 @@ class BallotVote < ActiveRecord::Base
   has_many :candidate_votes, :through => :office_votes
   validates_associated :office_votes
   validate :ballot_must_be_open_for_voting
-  validates_uniqueness_of :attribute, :on => :create, :message => "must be unique"
+  validate :member_vote_must_be_unique
   
   accepts_nested_attributes_for :office_votes, :allow_destroy => true
 
@@ -25,6 +25,11 @@ class BallotVote < ActiveRecord::Base
   end
   
   private
+    def member_vote_must_be_unique
+      count = BallotVote.where(:member_id => member_id, :ballot_id => ballot_id).count
+      return if count.zero?
+      errors[:base] << "You cannot vote twice"
+    end
   
     def ballot_must_be_open_for_voting
       return if ballot.open_for_voting?
