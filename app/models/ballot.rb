@@ -25,7 +25,7 @@ class Ballot < ActiveRecord::Base
   
   def open_for_voting?
     today = Time.now
-    start_date < today && today < end_date
+    start_date <= today && today <= end_date
   end
 
   def number_of_votes

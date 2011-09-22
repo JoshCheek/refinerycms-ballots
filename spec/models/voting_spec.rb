@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe 'Voting' do
   
   # ensure db is set up right
