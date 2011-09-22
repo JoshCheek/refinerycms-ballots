@@ -35,6 +35,10 @@ describe Ballot do
     ballot.pretty_end_date.should == '2012-01-01'
   end
   
+  specify 'its start date must be after its end date' do
+    get_ballot(:start_date => 1.day.from_now, :end_date => 1.day.ago).should_not be_valid
+  end
+  
   context 'is open for voting when' do
     specify 'today is on the start date' do
       time = Time.now

@@ -6,6 +6,7 @@ class Ballot < ActiveRecord::Base
   has_many :candidate_votes, :through => :ballot_votes # this will work in rails 3.1, but not 3.0.10, at which time, we can change the implementation of number_of_votes
 
   validates :title, :presence => true, :uniqueness => true
+  validate :start_date_is_before_end_date
   
   accepts_nested_attributes_for :offices, 
       :reject_if => lambda { |attrs| attrs[:title].blank? },
@@ -37,5 +38,10 @@ class Ballot < ActiveRecord::Base
     
   def number_of_voters
     ballot_votes.count
+  end
+  
+  def start_date_is_before_end_date
+    return if start_date < end_date
+    errors[:start_date] << 'must be after end date'
   end
 end
