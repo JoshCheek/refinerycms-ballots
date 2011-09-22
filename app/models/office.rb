@@ -12,4 +12,9 @@ class Office < ActiveRecord::Base
   accepts_nested_attributes_for :candidates,
       :reject_if => lambda { |attrs| attrs[:name].blank? },
       :allow_destroy => true
+      
+  def candidates_by_rating
+    candidates.sort_by { |candidate| candidate.number_of_votes }.reverse
+  end
+  
 end
