@@ -8,7 +8,7 @@ class VotesController < ApplicationController
     @ballot_vote = BallotVote.new params[:ballot_vote]
     @ballot_vote.ballot = @ballot
     @ballot_vote.member = @member
-        save = !@ballot_vote.save
+    save = !@ballot_vote.save
     member = !@member
     tampered = @ballot_vote.tampered?
 
