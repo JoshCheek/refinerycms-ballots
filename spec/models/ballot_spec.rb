@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../factories/ballot'
+require 'spec/factories/ballot'
 
 describe Ballot do
   

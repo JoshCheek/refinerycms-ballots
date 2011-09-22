@@ -1,8 +1,8 @@
-require_relative 'ballot'
+require 'spec/factories/ballot'
 
-Factory.define :office do |f|
-  f.title               { |n| "President #{n}" }
-  f.number_of_positions 1
-  f.association         :ballot              
-  f.sequence(:position) { |n| n }
+Factory.define :office do |office|
+  office.title               { |n| "President #{n}" }
+  office.number_of_positions 1
+  office.association         :ballot              
+  office.sequence(:position) { |n| n }
 end

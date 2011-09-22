@@ -1,4 +1,4 @@
-require_relative 'office'
+require 'spec/factories/office'
 
 Factory.define :ballot do |ballot|
   ballot.sequence(:title)    { |n| "Election #{n}" }
