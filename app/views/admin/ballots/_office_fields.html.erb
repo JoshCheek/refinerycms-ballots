@@ -1,10 +1,15 @@
 <div class="fields">
-  <p>
-    <%= f.label :content, "Office" %>
-    <%= link_to_remove_fields 'remove', f %><br />
-    <%= f.text_field :title %><br />
-    <%= f.text_field :number_of_positions %>
-  </p>
+  <%=f.label :content, "Office (#{link_to_remove_fields 'remove', f})".html_safe %>
+  
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %><br />
+    </div>
+    
+    <div class="field">
+      <%= f.label :number_of_positions %>
+      <%= f.text_field :number_of_positions %>
+    </div>
 
 <% f.object.candidates.build %>
 
