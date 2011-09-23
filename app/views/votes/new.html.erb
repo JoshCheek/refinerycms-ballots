@@ -15,25 +15,26 @@
     <%= form_for @ballot_vote do |f| -%>
     
       <%= text_field_tag :unique_identifier, @member.unique_identifier, :hidden => true %>
-      <%= f.fields_for :office_votes do |fov| %>
-        
-        <%= fov.text_field :office_id, :hidden => true %>
+      <%= f.fields_for :office_votes do |office_vote_form| %>
 
+        <fieldset>
+          <h4><%= office_vote_form.object.title %></h4>
+          <%= office_vote_form.text_field :office_id, :hidden => true %>
+          <p><%= position_message_for office_vote_form.object.max_num_votes %></p>
+          <ol class="candidates">
+            <%= office_vote_form.fields_for :candidate_votes do |candidate_vote_form| %>
+              <li class="field">
+                <%= candidate_vote_form.text_field :candidate_id, :hidden => true %>
+                <%= candidate_vote_form.check_box  :voted, :checked => candidate_vote_form.object.voted %>
+                <%= candidate_vote_form.label      :voted, candidate_vote_form.object.name %><br />
+              </li>
+            <% end %>
+          </ol>
+        </fieldset>
         
-        <h4><%= fov.object.title %></h4>
-        <p><%= position_message_for fov.object.max_num_votes %></p>
-        <ol class="candidates">
-          <%= fov.fields_for :candidate_votes do |fcv| %>
-            <li class="field">
-              <%= fcv.text_field :candidate_id, :hidden => true %>
-              <%= fcv.check_box :voted, :checked => fcv.object.voted %>
-              <%= fcv.label :voted, fcv.object.name %><br />
-            </li>
-          <% end %>
-        </ol>
+      <% end %>
       
-      <% end %>      
-      <%= submit_tag 'Vote' %>
+      <div class="field"><%= submit_tag 'Vote' %></div>
     <% end %>
   </section>
 <% end %>

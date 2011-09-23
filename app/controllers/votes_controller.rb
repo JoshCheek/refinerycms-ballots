@@ -1,3 +1,11 @@
+# injects functionality to member, but b/c of Rails lazy-loading we must
+# force it to be loaded by referenceing it.
+# 
+# I'm willing to entertain the idea that this is not a good approach, and willing to hear alternatives
+# At the same time, I don't completely hate it, except for the confusion in situations like this one.
+BallotVote
+
+
 class VotesController < ApplicationController
 
   before_filter :find_ballot
@@ -8,14 +16,12 @@ class VotesController < ApplicationController
     @ballot_vote = BallotVote.new params[:ballot_vote]
     @ballot_vote.ballot = @ballot
     @ballot_vote.member = @member
-    save = !@ballot_vote.save
-    member = !@member
-    tampered = @ballot_vote.tampered?
-
-    if member || tampered || save # !@member || @ballot_vote.tampered? || !@ballot_vote.save
+    if does_create?
+      flash[:notice] = "Thank you for voting."
       render :new
     else
-      redirect_to root_url
+      flash[:error] = "It appears there was a problem, please try again."
+      redirect_to login_ballot_votes_path(@ballot)
     end
   end
 
@@ -25,10 +31,14 @@ class VotesController < ApplicationController
 
   def new
     @member = Member.find_by_unique_identifier params[:unique_identifier]
-    if @member
-      @ballot_vote = BallotVote.new_for_ballot @ballot
-    else
+    if !@member
+      flash[:error] = 'Please double check your number and try again. If it is correct, you may need to contact an admin.'
       redirect_to login_ballot_votes_path(@ballot)
+    elsif @member.has_voted_on?(@ballot)
+      flash[:error] = "You have already voted on this ballot, revoting isn't allowed"
+      redirect_to login_ballot_votes_path(@ballot)
+    else
+      @ballot_vote = BallotVote.new_for_ballot @ballot
     end
   end
     
@@ -41,5 +51,20 @@ protected
   def find_page
     @page = Page.where(:link_url => "/ballots").first
   end
-
+  
+  def does_create?
+    no_member? || cant_save? || was_tampered_with?
+  end
+  
+  def cant_save?
+    !@ballot_vote.save
+  end
+  
+  def no_member?
+    !@member
+  end
+  
+  def was_tampered_with?
+    @ballot_vote.tampered?
+  end
 end
