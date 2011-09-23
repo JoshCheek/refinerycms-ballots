@@ -107,4 +107,14 @@ describe 'Voting' do
     end
   end
   
+  specify "Members should know if they have voted on a ballot before" do
+    member = Factory.create :member
+    member.has_voted_on?(ballot).should be_false
+    
+    ballot_vote = BallotVote.new_for_ballot Ballot.first
+    ballot_vote.member = member
+    ballot_vote.save!
+    member.has_voted_on?(ballot).should be_true
+  end
+  
 end
