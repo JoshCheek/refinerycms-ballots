@@ -1,4 +1,4 @@
-@vote_percentages
+@vote_percentages @ballots-engine
 Feature: Vote percentages
 
   Scenario: some people don't vote

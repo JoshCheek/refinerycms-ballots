@@ -7,12 +7,6 @@ describe 'Voting' do
   before :each do
     [Ballot, Office, Candidate, Member].each(&:delete_all)
     Factory.create_whole_ballot
-    
-    # just to make sure it does what we think it should
-    Ballot.count.should == 1
-    Office.count.should == 3
-    Candidate.count.should == 8
-    Member.count.should == 0
   end
   
   let(:ballot)    { Ballot.first}

@@ -1,8 +1,11 @@
+require 'spec/factories/all'
+
+
 Given /^a (\d+) person election, with (\d+) positions? available$/ do |num_candidates, num_positions, table|
   [Ballot, Office, Candidate].each(&:delete_all)
-  @ballot = Ballot.new :title => 'election', :start_date => 10.days.ago, :end_date => 10.days.from_now
-  @office = @ballot.offices.build :number_of_positions => num_positions.to_i, :title => 'office'
-  @candidates = table.raw.map { |(name)| @office.candidates.build :name => name.strip }
+  @ballot = get_ballot!
+  @office = get_office! :ballot => @ballot, :number_of_positions => num_positions.to_i
+  @candidates = table.raw.map { |(name)| get_candidate! :office => @office, :name => name.strip }
   @ballot.save!
 end
 
@@ -10,8 +13,9 @@ end
 Given /^(\d+) (?:people|person) votes? for (\w+)$/ do |n, name|
   n.to_i.times do
     ballot_vote = BallotVote.new_for_ballot @ballot
+    ballot_vote.member = get_member
     vote_for(ballot_vote, [name])
-    ballot_vote.save
+    ballot_vote.save!
   end
 end
 
@@ -41,6 +45,7 @@ end
 
 Given /^\w+ votes for (.*)$/ do |votees|
   ballot_vote = BallotVote.new_for_ballot @ballot
+  ballot_vote.member = get_member
   vote_for ballot_vote, votees.split(", ")
   ballot_vote.save
 end

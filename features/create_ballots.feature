@@ -1,4 +1,4 @@
-@ballots
+@ballots @ballots-engine
 Feature: Create ballot
 
   Background:

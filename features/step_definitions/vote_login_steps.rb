@@ -1,3 +1,6 @@
+require 'spec/factories/all'
+
+
 Given /^a member "(\w+)"$/ do |unique_identifier|
   Member.delete_all
   Member.create! :unique_identifier => unique_identifier
