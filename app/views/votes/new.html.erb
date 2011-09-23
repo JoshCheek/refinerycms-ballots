@@ -12,7 +12,7 @@
             :include_object_name => true
           } %>
 
-    <%= form_for @ballot_vote do |f| -%>
+    <%= form_for @ballot_vote, :url => { :action => "proceed" } do |f| -%>
     
       <%= text_field_tag :unique_identifier, @member.unique_identifier, :hidden => true %>
       <%= f.fields_for :office_votes do |office_vote_form| %>

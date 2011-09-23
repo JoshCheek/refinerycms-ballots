@@ -1,0 +1,34 @@
+<% content_for :stylesheets, stylesheet_link_tag("ballots.css") -%>
+<% content_for :body_content_title do %>
+  Confirm <%= @ballot.title %>
+<% end %>
+
+
+<% content_for :body_content_left do %>
+
+  <!-- the displayed results -->
+  <section class="ballot_vote">
+    <% @ballot_vote.office_votes.each do |office_vote| %>
+      <%= render 'confirmation_office_votes_display', :office_vote => office_vote %>
+    <% end %>
+  </section>  
+
+
+  <!-- the full hidden data -->
+  <%= form_for @ballot_vote, :url => { :action => "proceed" } do |f| -%>
+    <%= text_field_tag :unique_identifier, @member.unique_identifier, :hidden => true %>
+    <%= f.fields_for :office_votes do |office_vote_form| %>
+    <%= office_vote_form.text_field :office_id, :hidden => true %>    
+      <%= office_vote_form.fields_for :candidate_votes do |candidate_vote_form| %>
+        <%= candidate_vote_form.text_field :candidate_id, :hidden => true %>
+        <%= candidate_vote_form.check_box  :voted, :checked => candidate_vote_form.object.voted, :hidden => true %>
+      <% end %>
+    <% end %>        
+    <div class="field"><%= submit_tag 'Back' %>
+    <%= submit_tag 'Confirm' %></div>
+  <% end %>
+<% end %>
+
+
+<%= render :partial => "/shared/content_page" %>
+

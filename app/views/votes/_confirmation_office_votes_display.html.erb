@@ -1,0 +1,19 @@
+<h4><%= office_vote.office.title %></h4>
+
+<% candidate_votes = office_vote.candidate_votes.select(&:voted) %>
+
+
+<% if candidate_votes.size.zero? %>
+  <ol class="candidates">
+    <li>You did not vote.</li>
+  </ol>
+<% else %>
+  <%= undervote_message_for office_vote if undervoted? office_vote %>
+  <ol class="candidates">
+    <% candidate_votes.each do |candidate_vote| %>
+      <li><%= candidate_vote.name %></li>
+    <% end %>
+  </ol>
+<% end %>
+
+
