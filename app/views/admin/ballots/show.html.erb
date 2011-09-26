@@ -23,4 +23,9 @@
 <% end %>
 
 
+<% content_for :body_content_right do %>
+  <%= render 'show_voters', :voters => @ballot.voting_members, :title => 'Members who have voted' %>
+  <%= render 'show_voters', :voters => @ballot.nonvoting_members, :title => 'Members who have not voted' %>
+<% end %>
+
 <%= render :partial => "/shared/content_page" %>

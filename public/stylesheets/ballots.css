@@ -1,3 +1,16 @@
 .ballot ol li, .ballot_vote ol li {
   list-style: none;
 }
+
+#body_content_left {
+  float: left;
+  padding-left: 50px;
+  margin: 0px;
+  width: 45%;
+}
+
+#body_content_right {
+  float: right;
+  margin: 0px;
+  width: 45%;
+}
