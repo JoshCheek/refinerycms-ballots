@@ -11,7 +11,7 @@ class Ballot < ActiveRecord::Base
   accepts_nested_attributes_for :offices, 
       :reject_if => lambda { |attrs| attrs[:title].blank? },
       :allow_destroy => true
-  
+      
   def pretty_start_date
     pretty_date start_date
   end
@@ -25,8 +25,15 @@ class Ballot < ActiveRecord::Base
   end
   
   def open_for_voting?
-    today = Time.now
     start_date <= today && today <= end_date
+  end
+  
+  def too_early_to_vote?
+    today < start_date
+  end
+  
+  def too_late_to_vote?
+    end_date < today
   end
 
   def number_of_votes
@@ -38,6 +45,11 @@ class Ballot < ActiveRecord::Base
     
   def number_of_voters
     ballot_votes.count
+  end
+  
+private
+  def today
+    Time.now
   end
   
   def start_date_is_before_end_date

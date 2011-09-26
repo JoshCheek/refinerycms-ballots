@@ -13,7 +13,15 @@ class VotesController < ApplicationController
   before_filter :find_member, :except => :login
   
   def login
-    present @page
+    if @ballot.too_early_to_vote?
+      flash[:error] = "This election doesn't start until #{@ballot.pretty_start_date}"
+      redirect_to root_url
+    elsif @ballot.too_late_to_vote?
+      flash[:error] = "This election ended on #{@ballot.pretty_end_date}"
+      redirect_to root_url
+    else
+      present @page
+    end
   end
 
   # this is basically a state machine to take you through the form

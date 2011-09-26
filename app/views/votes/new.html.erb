@@ -8,16 +8,17 @@
     <p><%= @ballot.pretty_start_date %> through <%= @ballot.pretty_end_date %></p>
 
     <%= form_for @ballot_vote, :url => { :action => "proceed" } do |f| -%>
-    
+      <%= show_errors_for @ballot_vote %>
+      
       <%= text_field_tag :unique_identifier, @member.unique_identifier, :hidden => true %>
       <%= f.fields_for :office_votes do |office_vote_form| %>
-        <% office = office_vote_form.object %>
+        <% office_vote = office_vote_form.object %>
         
         <fieldset>
-          <h4><%= office.title %></h4>
-          <%= show_errors_for office %>
+          <h4><%= office_vote.title %></h4>
+          <%= show_errors_for office_vote %>
           <%= office_vote_form.text_field :office_id, :hidden => true %>
-          <p><%= position_message_for office.max_num_votes %></p>
+          <p><%= position_message_for office_vote.max_num_votes %></p>
           <ol class="candidates">
             <%= office_vote_form.fields_for :candidate_votes do |candidate_vote_form| %>
               <li class="field">

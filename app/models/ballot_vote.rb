@@ -32,9 +32,11 @@ class BallotVote < ActiveRecord::Base
     end
   
     def ballot_must_be_open_for_voting
-      return if ballot.open_for_voting?
-      end_date = ballot.end_date.strftime '%d %b %Y' # might not be accurate enough at boundary dates
-      errors[:base] << "This ballot closed for voting on #{end_date}."
+      if ballot.too_early_to_vote?
+        errors[:base] << "This ballot won't open for voting until #{ballot.pretty_start_date}."
+      elsif ballot.too_late_to_vote?
+        errors[:base] << "This ballot closed for voting on #{ballot.pretty_end_date}."
+      end
     end
 end
 

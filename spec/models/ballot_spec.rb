@@ -29,25 +29,49 @@ describe Ballot do
     get_ballot(:start_date => 1.day.from_now, :end_date => 1.day.ago).should_not be_valid
   end
   
-  context 'is open for voting when' do
-    specify 'today is on the start date' do
-      time = Time.now
-      Time.stub!(:now).and_return(time)
-      ballot = get_ballot :start_date => time
-      ballot.should be_open_for_voting
+  
+  describe 'open/closed' do
+    tuesday   = Time.now
+    wednesday = tuesday + 100
+    thursday  = wednesday + 100
+  
+    shared_examples_for 'an open election' do
+      before(:each) { Time.stub!(:now).and_return(wednesday) }
+      it { should be_open_for_voting }
+      it { should_not be_too_early_to_vote }
+      it { should_not be_too_late_to_vote }
     end
     
-    specify 'today is on the end date' do
-      time = Time.now
-      Time.stub!(:now).and_return(time)
-      ballot = get_ballot :end_date => time
-      ballot.should be_open_for_voting
+    context 'when today is before the start date' do
+      before(:each) { Time.stub!(:now).and_return(tuesday) }
+      subject { get_ballot :start_date => wednesday, :end_date => thursday }
+      it { should_not be_open_for_voting }
+      it { should be_too_early_to_vote }
+      it { should_not be_too_late_to_vote }
+    end
+  
+    context 'when today is on the start date' do
+      subject { get_ballot :start_date => wednesday, :end_date => thursday }
+      it_should_behave_like 'an open election'
+    end
+  
+    context 'when today is on the end date' do
+      subject { get_ballot :end_date => wednesday, :end_date => thursday }
+      it_should_behave_like 'an open election'
+    end
+  
+    context 'when today is within the start and end dates' do
+      subject { get_ballot :start_date => tuesday, :end_date => thursday }
+      it_should_behave_like 'an open election'
     end
     
-    specify 'today is within the start and end dates' do |variable|
-      ballot = get_ballot :start_date => 10.days.ago, :end_date => 10.days.from_now
-      ballot.should be_open_for_voting
+    context 'when today is after the end date' do
+      before(:each) { Time.stub!(:now).and_return(thursday) }
+      subject { get_ballot :start_date => tuesday, :end_date => wednesday }
+      it { should_not be_open_for_voting }
+      it { should_not be_too_early_to_vote }
+      it { should be_too_late_to_vote }
     end
   end
-    
+  
 end
