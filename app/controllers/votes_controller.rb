@@ -1,11 +1,3 @@
-# injects functionality to member, but b/c of Rails lazy-loading we must
-# force it to be loaded by referenceing it.
-# 
-# I'm willing to entertain the idea that this is not a good approach, and willing to hear alternatives
-# At the same time, I don't completely hate it, except for the confusion in situations like this one.
-BallotVote
-
-
 class VotesController < ApplicationController
 
   before_filter :find_ballot
