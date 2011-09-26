@@ -5,7 +5,6 @@
 
 <% content_for :body_content_left do %>
   <section class="ballot">
-    <p><%= @ballot.pretty_start_date %> through <%= @ballot.pretty_end_date %></p>
     
     <% @ballot.offices.each do |office| %>
       <h4><%= office.title %></h4>
