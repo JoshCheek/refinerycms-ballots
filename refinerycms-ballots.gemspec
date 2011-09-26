@@ -7,6 +7,6 @@ Gem::Specification.new do |s|
   s.summary           = 'Ballots engine for Refinery CMS'
   s.require_paths     = %w(lib)
   s.files             = Dir['lib/**/*', 'config/**/*', 'app/**/*']
-  s.add_dependency              'refinerycms-members'
+  s.add_dependency              'refinerycms-simple_members'
   s.add_development_dependency  'factory_girl', '~> 2.1.0'
 end
