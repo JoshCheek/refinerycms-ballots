@@ -47,13 +47,21 @@ class Ballot < ActiveRecord::Base
     ballot_votes.count
   end
   
-private
-  def today
-    Time.now
+  def voting_members
+    Member.all.select { |member| member.has_voted_on? self }
   end
+  
+  def nonvoting_members
+    Member.all.reject { |member| member.has_voted_on? self }
+  end
+  
   
   def start_date_is_before_end_date
     return if start_date < end_date
     errors[:start_date] << 'must be after end date'
+  end
+private
+  def today
+    Time.now
   end
 end

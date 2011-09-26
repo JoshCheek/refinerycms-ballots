@@ -74,4 +74,14 @@ describe Ballot do
     end
   end
   
+  it "can find members who have and haven't voted on it" do
+    ballot = Factory.create_whole_ballot
+    member1, member2 = get_member!, get_member!
+    vote = BallotVote.new_for_ballot ballot
+    vote.member = member1
+    vote.save!
+    ballot.voting_members.to_a.should == [member1]
+    ballot.nonvoting_members.to_a.should == [member2]
+  end
+  
 end
