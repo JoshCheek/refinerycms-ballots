@@ -1,4 +1,5 @@
 require 'refinerycms-base'
+require 'member_extensions'
 
 module Refinery
   module Ballots

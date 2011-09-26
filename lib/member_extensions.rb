@@ -1,5 +1,3 @@
-Member # force autoloading to load the file
-
 class Member < ActiveRecord::Base
   has_many :ballot_votes
   
