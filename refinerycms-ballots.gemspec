@@ -9,4 +9,5 @@ Gem::Specification.new do |s|
   s.files             = Dir['lib/**/*', 'config/**/*', 'app/**/*']
   s.add_dependency              'refinerycms-simple_members'
   s.add_development_dependency  'factory_girl', '~> 2.1.0'
+  s.author            = 'Josh Cheek'
 end
