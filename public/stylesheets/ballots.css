@@ -2,7 +2,6 @@
   list-style: none;
 }
 
-
 #body_content .left-column {
   float: left;
   padding-left: 50px;
@@ -14,4 +13,40 @@
   float: right;
   margin: 0px;
   width: 45%;
+}
+
+form div.office.fields {
+  background-color: #DDD;
+  padding: 20px;
+  margin: 30px 200px 0px 10px;  /* 200px RHS is kind of a hack, just to push the next element to the next line */
+  display: inline-block;        /* inline-block is so the background shrink-wraps the contents of the element */
+}
+
+
+#content form .office.fields > .field {
+  display: inline-block;
+  width: inherit;
+}
+
+
+form .office.fields > label {
+  margin-top: 0px;
+  margin-left: 0px;
+  width: 50%;
+}
+
+/* apparently this selector won't work on ie8, but not important enough to care */
+form .office.fields > .field:last-of-type {
+  margin-left: 15px;
+}
+
+#content form .start_date {
+  display: inline-block;
+  width: inherit;
+}
+
+#content form .end_date {
+  display: inline-block;
+  width: inherit;
+  margin-left: 50px;
 }

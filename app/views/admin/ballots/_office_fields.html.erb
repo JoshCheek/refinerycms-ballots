@@ -1,17 +1,17 @@
-<div class="fields">
+<div class="office fields">
   <%=f.label :content, "Office (#{link_to_remove_fields 'remove', f})".html_safe %>
   
     <div class="field">
       <%= f.label :title %>
-      <%= f.text_field :title %><br />
+      <%= f.text_field :title, :size => 15 %>
     </div>
     
     <div class="field">
       <%= f.label :number_of_positions %>
-      <%= f.text_field :number_of_positions %>
+      <%= f.text_field :number_of_positions, :size => 15 %>
     </div>
 
-<% f.object.candidates.build %>
+  <% f.object.candidates.build %>
 
   <%= f.fields_for :candidates do |builder| %>
     <%= render 'candidate_fields', :f => builder %>
