@@ -1,11 +1,12 @@
 <% content_for :stylesheets, stylesheet_link_tag("ballots.css") -%>
+
 <% content_for :body_content_title do %>
   <%= @ballot.title %>
 <% end %>
 
+
 <% content_for :body_content_left do %>
-  <section class="ballot">
-    
+  <section class="ballot left-column">
     <% @ballot.offices.each do |office| %>
       <h4><%= office.title %></h4>
       <ol class="candidates">
@@ -20,12 +21,13 @@
       </ol>
     <% end %>
   </section>
+
+  
+  <section class="right-column">
+    <%= render 'show_voters', :voters => @ballot.voting_members, :title => 'Members who have voted' %>
+    <%= render 'show_voters', :voters => @ballot.nonvoting_members, :title => 'Members who have not voted' %>
+  </section>
 <% end %>
 
-
-<% content_for :body_content_right do %>
-  <%= render 'show_voters', :voters => @ballot.voting_members, :title => 'Members who have voted' %>
-  <%= render 'show_voters', :voters => @ballot.nonvoting_members, :title => 'Members who have not voted' %>
-<% end %>
 
 <%= render :partial => "/shared/content_page" %>

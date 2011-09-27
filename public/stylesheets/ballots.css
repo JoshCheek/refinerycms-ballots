@@ -2,14 +2,15 @@
   list-style: none;
 }
 
-#body_content_left {
+
+#body_content .left-column {
   float: left;
   padding-left: 50px;
   margin: 0px;
   width: 45%;
 }
 
-#body_content_right {
+#body_content .right-column {
   float: right;
   margin: 0px;
   width: 45%;
