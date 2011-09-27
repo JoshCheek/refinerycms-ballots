@@ -1,3 +1,4 @@
+<% content_for :stylesheets, stylesheet_link_tag("ballots.css") -%>
 <script src="/javascripts/refinerycms-ballots.js" type="text/javascript"></script> 
 
 <%= form_for [:admin, @ballot] do |f| -%>
@@ -11,12 +12,12 @@
     <%= f.text_field :title, :class => 'larger widest'  -%>
   </div>
   
-  <div class="field">
+  <div class="field start_date">
     <%= f.label :start_date %><br />
     <%= f.datetime_select :start_date %>
   </div>
   
-  <div class="field">
+  <div class="field end_date">
     <%= f.label :end_date %><br />
     <%= f.datetime_select :end_date %>
   </div>
