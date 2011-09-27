@@ -8,7 +8,7 @@
     <p><%= @ballot.pretty_start_date %> through <%= @ballot.pretty_end_date %></p>
 
     <%= form_for @ballot_vote, :url => { :action => "proceed" } do |f| -%>
-      <%= show_errors_for @ballot_vote %>
+      <%= show_errors_for_ballot_vote @ballot_vote %>
       
       <%= text_field_tag :unique_identifier, @member.unique_identifier, :hidden => true %>
       <%= f.fields_for :office_votes do |office_vote_form| %>
@@ -16,7 +16,7 @@
         
         <fieldset>
           <h4><%= office_vote.title %></h4>
-          <%= show_errors_for office_vote %>
+          <%= show_errors_for_office_vote office_vote %>
           <%= office_vote_form.text_field :office_id, :hidden => true %>
           <p><%= position_message_for office_vote.max_num_votes %></p>
           <ol class="candidates">

@@ -9,12 +9,18 @@ module VotesHelper
     office_vote.num_votes < office_vote.max_num_votes
   end
   
-  def show_errors_for(office)
-    return '' if office.errors.empty?
-    raw "<div class='errorExplanation'>#{errors_as_li office}</div>"
+  def show_errors_for_ballot_vote(ballot)
+    errors = ballot.errors[:base]
+    return '' if errors.empty?
+    raw "<div class='errorExplanation'>#{errors_as_li errors}</div>"
   end
   
-  def errors_as_li(office)
-    office.errors.full_messages.map { |msg| "<li>#{msg}</li>" }.join
+  def show_errors_for_office_vote(office)
+    return '' if office.errors.empty?
+    raw "<div class='errorExplanation'>#{errors_as_li office.errors.full_messages}</div>"
+  end
+  
+  def errors_as_li(error_messages)
+    error_messages.map { |msg| "<li>#{msg}</li>" }.join
   end
 end
