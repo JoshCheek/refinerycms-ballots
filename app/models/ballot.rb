@@ -21,7 +21,7 @@ class Ballot < ActiveRecord::Base
   end
   
   def pretty_date(date)
-    date.strftime "%Y-%m-%d"
+    date.strftime "%B %e, %Y"
   end
   
   def open_for_voting?

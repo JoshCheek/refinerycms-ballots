@@ -16,13 +16,13 @@ describe Ballot do
   end
 
   it 'formats the start date' do
-    ballot = get_ballot :start_date => Date.parse('1/1/2012')
-    ballot.pretty_start_date.should == '2012-01-01'
+    ballot = get_ballot :start_date => Date.parse('11/1/2012')
+    ballot.pretty_start_date.should == 'January 11, 2012'
   end
   
   it 'formats the end date' do
-    ballot = get_ballot :end_date => Date.parse('1/1/2012')
-    ballot.pretty_end_date.should == '2012-01-01'
+    get_ballot! :end_date => Date.parse('11/1/2012')
+    Ballot.last.pretty_end_date.should == 'January 11, 2012'
   end
   
   specify 'its start date must be after its end date' do
