@@ -10,9 +10,11 @@ and candidates to run for those offices.
 
 ![create a ballot][ballot-create]
 
-You can then give your members a link where they can log in and vote.
+You can then give your members a link where they can log in.
 
 ![log in][vote-login]
+
+After logging in, they can vote on the ballot.
 
 ![vote][vote]
 
