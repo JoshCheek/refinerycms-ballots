@@ -12,12 +12,12 @@ module VotesHelper
   def show_errors_for_ballot_vote(ballot)
     errors = ballot.errors[:base]
     return '' if errors.empty?
-    raw "<div class='errorExplanation'>#{errors_as_li errors}</div>"
+    raw "<div class='errorExplanation'><ul>#{errors_as_li errors}</ul></div>"
   end
   
   def show_errors_for_office_vote(office)
     return '' if office.errors.empty?
-    raw "<div class='errorExplanation'>#{errors_as_li office.errors.full_messages}</div>"
+    raw "<div class='errorExplanation'><ul>#{errors_as_li office.errors.full_messages}</ul></div>"
   end
   
   def errors_as_li(error_messages)
