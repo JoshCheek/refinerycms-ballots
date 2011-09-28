@@ -4,11 +4,22 @@
 
 
 <% if candidate_votes.size.zero? %>
+  <div class="errorExplanation">
+    <ul><li>You did not vote.</li></ul>
+  </div>
+
   <ol class="candidates">
-    <li>You did not vote.</li>
   </ol>
 <% else %>
-  <%= undervote_message_for office_vote if undervoted? office_vote %>
+  
+  <% if undervoted? office_vote %>
+    <div class="errorExplanation">
+      <ul>
+        <li><%= undervote_message_for office_vote %></li>
+      </ul>
+    </div>
+  <% end %>
+  
   <ol class="candidates">
     <% candidate_votes.each do |candidate_vote| %>
       <li><%= candidate_vote.name %></li>
