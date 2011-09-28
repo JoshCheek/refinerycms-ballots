@@ -35,6 +35,15 @@ After they have voted, you will see their results updated in the admin panel.
 [vote-confirmation]:  https://s3.amazonaws.com/josh.cheek/images/scratch/refinerycms-ballots/vote-confirmation.png
 [ballot-results]:     https://s3.amazonaws.com/josh.cheek/images/scratch/refinerycms-ballots/ballot-results.png
 
+# Install
+
+    echo 'gem "refinerycms-ballots", "~> 0.1.5"' >> Gemfile # be sure to check that this is the most current version
+    bundle install
+    rails g refinerycms_simple_members
+    rails g refinerycms_ballots
+    rake db:migrate
+
+
 # About
 
 Developed by [Josh Cheek](http://joshcheek.com/) as part of my apprenticeship at [8th Light](http://www.8thlight.com/).
