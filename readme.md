@@ -1,20 +1,12 @@
 # Ballots engine for [Refinery CMS][refinery].
 
 Ballots uses [simple members][simple members] to have members with first and last name,
-email, and a unique identifier of some sort (mandatory).
-
-![create a member][member-create]
-
-You can create ballots for you members to vote on. These have offices people can run for
-and candidates to run for those offices.
+email, and a unique identifier of some sort (mandatory). You can create ballots for you 
+members to vote on. These have offices people can run for and candidates to run for those offices.
 
 ![create a ballot][ballot-create]
 
-You can then give your members a link where they can log in.
-
-![log in][vote-login]
-
-After logging in, they can vote on the ballot.
+You can then give your members a link where they can log in and vote on the ballot.
 
 ![vote][vote]
 
@@ -24,7 +16,6 @@ They are then taken to a confirmation page which will alert them if they undervo
 
 After they have voted, you will see their results updated in the admin panel.
 
-![view ballot results][ballot-results]
 
 [refinery]:           http://refinerycms.com/
 [simple members]:     https://rubygems.org/gems/refinerycms-simple_members
