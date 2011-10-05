@@ -1,5 +1,9 @@
 module Admin
   module BallotsHelper
+    def unique_identifier_name
+      Member.unique_identifier_name
+    end
+    
     def link_to_remove_fields name, f
       link_to_function(name, "remove_fields(this)") + f.hidden_field(:_destroy)
     end
