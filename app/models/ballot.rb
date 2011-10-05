@@ -48,11 +48,11 @@ class Ballot < ActiveRecord::Base
   end
   
   def voting_members
-    Member.all.select { |member| member.has_voted_on? self }
+    Member.all.select { |member| voted_on_by? member }
   end
   
   def nonvoting_members
-    Member.all.reject { |member| member.has_voted_on? self }
+    Member.all.reject { |member| voted_on_by? member }
   end
   
   
@@ -60,6 +60,11 @@ class Ballot < ActiveRecord::Base
     return if start_date < end_date
     errors[:start_date] << 'must be after end date'
   end
+  
+  def voted_on_by?(member)
+    ballot_votes.where(:member_id => member.id, :ballot_id => id).any?
+  end
+  
 private
   def today
     Time.now

@@ -1,4 +1,4 @@
- class BallotsController < ApplicationController
+class BallotsController < ApplicationController
 
   before_filter :find_all_ballots
   before_filter :find_page

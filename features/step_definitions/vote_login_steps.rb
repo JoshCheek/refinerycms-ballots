@@ -1,6 +1,5 @@
 require 'spec/factories/all'
 
-
 Given /^a member "(\w+)"$/ do |unique_identifier|
   Member.delete_all
   Member.create! :unique_identifier => unique_identifier
@@ -41,6 +40,6 @@ Given /^I vote$/ do
 end
 
 Then /^"([^"]*)" has voted once$/ do |unique_identifier|
-  Member.find_by_unique_identifier(unique_identifier).number_of_times_voted.should == 1
+  Member.find_by_unique_identifier(unique_identifier).ballot_votes.count.should == 1
 end
 

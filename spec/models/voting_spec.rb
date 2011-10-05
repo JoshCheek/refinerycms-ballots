@@ -24,7 +24,7 @@ describe 'Voting' do
   specify 'members can cast votes for candidates' do
     bradford.vote
     bv.save!
-    member.ballot_votes.count.should == 1
+    BallotVote.where(:member_id => member.id).count.should == 1
     BallotVote.count.should == 1
     OfficeVote.count.should == 3
     CandidateVote.count.should == 8
@@ -103,12 +103,12 @@ describe 'Voting' do
   
   specify "Members should know if they have voted on a ballot before" do
     member = Factory.create :member
-    member.has_voted_on?(ballot).should be_false
+    ballot.should_not be_voted_on_by member
     
     ballot_vote = BallotVote.new_for_ballot Ballot.first
     ballot_vote.member = member
     ballot_vote.save!
-    member.has_voted_on?(ballot).should be_true
+    ballot.should be_voted_on_by member
   end
   
 end

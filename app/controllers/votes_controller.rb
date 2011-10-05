@@ -37,7 +37,7 @@ protected
     if !@member
       flash[:error] = 'Please double check your number and try again. If it is correct, you may need to contact an admin.'
       redirect_to login_ballot_votes_path(@ballot)
-    elsif @member.has_voted_on?(@ballot)
+    elsif @ballot.voted_on_by?(@member)
       flash[:error] = "You have already voted on this ballot, revoting isn't allowed"
       redirect_to login_ballot_votes_path(@ballot)
     else
