@@ -7,8 +7,8 @@ Feature: Create ballot
   
   Scenario: Create a Ballot
     Then I should be able to add a ballot
-    |start_date|end_date|title|
-    |2011-09-09|2011-09-12|president|
+    | start_date         | end_date           | title     |
+    | September  9, 2011 | September 12, 2011 | president |
 
   Scenario: Create offices on a ballot
     Given a Ballot
