@@ -16,12 +16,12 @@
 
   <!-- the full hidden data -->
   <%= form_for @ballot_vote, :url => { :action => "proceed" } do |f| -%>
-    <%= text_field_tag :unique_identifier, @member.unique_identifier, :type => :hidden %>
+    <%= hidden_field_tag :unique_identifier, @member.unique_identifier %>
     <%= f.fields_for :office_votes do |office_vote_form| %>
-    <%= office_vote_form.text_field :office_id, :type => :hidden %>    
+    <%= office_vote_form.hidden_field :office_id %>
       <%= office_vote_form.fields_for :candidate_votes do |candidate_vote_form| %>
-        <%= candidate_vote_form.text_field :candidate_id, :type => :hidden %>
-        <%= candidate_vote_form.check_box  :voted, :checked => candidate_vote_form.object.voted, :type => :hidden %>
+        <%= candidate_vote_form.hidden_field :candidate_id %>
+        <%= candidate_vote_form.hidden_field :voted %>
       <% end %>
     <% end %>        
     <div class="field"><%= submit_tag 'Back' %>
